@@ -1,7 +1,31 @@
 # Learning Journey Notes
 This journal will record my observations and learnings during this build. 
 
-## Getting Started
+## Common Git Workflow Commands
+### Clone Repo to Current Folder
+git clone https://github.com/george-v14/lightning-cheminformatics-starter.git to copy repo
+git status - to see which repo/branch you are on
+git pull origin main -- to update folder to current branch
+
+### Set Global Identity
+Need to do this for every new session
+git config --global user.name "my name"
+git config --global user.email "email@gmail.com"
+
+### Laptop Commands
+git add .
+git commit -m "Update README"
+git push
+
+### Lightning AI
+git pull -- to pull latest branch version
+
+*to make changes*
+git add .
+git commit -m "description of changes"
+git push
+
+## Trying the Streamlit Studio and AI Builder
 Create github repo first. I usually skip this step and create the Lightning AI Studio. 
 Lightning AI has pre-configured studio options for this project I selected Streamlit which gives the option to generate app from text prompt. We are using
 "Create a Streamlit application for exploring molecular properties using RDKit. The application should allow a user to enter a SMILES string, render the molecule, compute basic molecular descriptors (molecular weight, LogP, TPSA, H-bond donors, H-bond acceptors), and display them in a table. Organize the code cleanly so that cheminformatics functions are separated from the Streamlit UI. Use Python, RDKit, pandas, and streamlit. The application should be designed to be extended later with machine learning models and molecular similarity search."
@@ -20,3 +44,4 @@ Step 1 - Bring your code by cloning repo or uploading
 Step 2 - Bring your data
 Step 3 - Install packages
 Step 4 - Add studio plugins
+
