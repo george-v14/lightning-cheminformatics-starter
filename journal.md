@@ -12,6 +12,10 @@ Need to do this for every new session
 git config --global user.name "my name"
 git config --global user.email "email@gmail.com"
 
+
+### HTTP GitHub pushes require personal access token
+PATs are created in GitHub developer settings. These can only be copied at creation so save those somewhere.
+
 ### Laptop Commands
 git add .
 git commit -m "Update README"
@@ -23,7 +27,7 @@ git pull -- to pull latest branch version
 *to make changes*
 git add .
 git commit -m "description of changes"
-git push
+git push origin main
 
 ## Trying the Streamlit Studio and AI Builder
 Create github repo first. I usually skip this step and create the Lightning AI Studio. 
