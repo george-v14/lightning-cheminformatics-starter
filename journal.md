@@ -1,6 +1,36 @@
 # Learning Journey Notes
 This journal will record my observations and learnings during this build. 
 
+# Project Milestones
+
+## Milestone 1 - Development Environment
+
+### Accomplishments
+
+- Created GitHub repository
+- Created Lightning AI Python Studio
+- Connected GitHub repository to Lightning AI
+- Configured Git identity
+- Configured Git credential storage
+- Established Git workflow (clone, pull, commit, push)
+- Created initial project architecture
+- Designed repository structure
+- Wrote project README
+- Added Mermaid architecture diagram
+- Created notebook decomposition document
+
+### Lessons Learned
+
+- Lightning AI Studio provides a cloud-native VS Code development environment.
+- HTTPS GitHub authentication requires a Personal Access Token.
+- Git credential storage significantly reduces development friction.
+- Mermaid diagrams render on GitHub but not in the Lightning AI VS Code preview.
+- Spending time designing project architecture before coding reduces refactoring later.
+
+### Next Milestone
+
+Execute the original Practical Cheminformatics notebook without modification.
+
 ## Common Git Workflow Commands
 ## Git Lessons from Lightning AI Studio Setup
 
