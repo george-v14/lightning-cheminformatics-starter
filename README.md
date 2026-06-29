@@ -2,14 +2,14 @@
 
 A portfolio project demonstrating how to transform a notebook-based cheminformatics workflow into a deployable machine learning application using Lightning AI.
 
-The project begins with the Building a Machine Learning Model with BindingDB tutorial from Practical Cheminformatics and extends it into a configurable application that enables users to:
+The project begins with the Building a Machine Learning Model with [BindingDB tutorial](https://colab.research.google.com/github/PatWalters/practical_cheminformatics_tutorials/blob/main/bindingdb/binding_db_pxr_tutorial.ipynb) from [Practical Cheminformatics](https://patwalters.github.io/) and extends it into a configurable application that enables users to:
 
-Query BindingDB for a protein target
-Engineer molecular features
-Configure and train machine learning models
-Save trained models
-Predict molecular activity from user-provided SMILES
-Deploy and serve the application using Lightning AI
+- Query BindingDB for a protein target
+- Engineer molecular features
+- Configure and train machine learning models
+- Save trained models
+- Predict molecular activity from user-provided SMILES
+- Deploy and serve the application using Lightning AI
 
 ## Project Goals
 This repository is designed to explore the complete lifecycle of a scientific machine learning application.
