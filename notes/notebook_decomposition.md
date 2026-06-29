@@ -234,6 +234,14 @@ ax.set_ylim(0,1)
 
 # Dependencies
 
-# Resuable Functions
+# Resuable Functions or Functions to Create
+- Create a function for randomaly splitting and aggregating R squared performance metrics
+- Create EC50 cleaning and aggregation function
+- Plotting functions to see R-square variations, histogram distributions, similarity box plots, etc.
+- Create function for parsing PDB structures and flagging compounds with and without crystal structures
+- Tanimoto simialrity scoring and descriptor calcualtor
 
 # Canddate UI Components
+- Data Exploration and Data Prep Tab - Explore distributions, generate descriptors, feature engineer data, clean data. Measure tanimoto similarity and id PDB crystal structures. End with ability for user to "save" final dataset for ML training
+- Model Training Tab - use the saved dataset from the previous tab to begin training. Give the user the ability to select different scikit models and render the necessary validation metrics. This example uses R-squared but there may be better options to use.
+- Predictions - Final tab where a user can input a new compound's smiles to generate a prediction about binding the target protein for the selected model. In this example, it would return predictions for PXR
