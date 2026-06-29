@@ -151,7 +151,15 @@ Observation:
 
 Research notebooks frequently include visualization libraries that are tightly coupled to the notebook environment. When converting notebooks into applications, these dependencies can often be removed in favor of the application's native UI framework.
 
+### Lightning AI Streamlit Hosting
 
+The Streamlit Studio plugin was easy to configure, but deployment did not provide useful error messages when the app failed to launch correctly. For the MVP, I will use the reliable workflow:
+
+1. Run Streamlit from the terminal.
+2. Expose port 8501 through Lightning AI Port Viewer.
+3. Iterate on the application from there.
+
+This keeps the focus on the scientific workflow rather than debugging the hosting plugin.
 
 ## Common Git Workflow Commands
 ## Git Lessons from Lightning AI Studio Setup

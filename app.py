@@ -15,8 +15,10 @@ from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
 
 
-DATA_PATH = Path("data/raw/bindingdb_sample.ddb")
-MODEL_PATH = Path("models/pxr_lgbm_model.joblib")
+PROJECT_ROOT = Path(__file__).resolve().parent
+
+DATA_PATH = PROJECT_ROOT / "data" / "raw" / "bindingdb_sample.ddb"
+MODEL_PATH = PROJECT_ROOT / "models" / "pxr_lgbm_model.joblib"
 UNIPROT_ID = "O75469"
 
 
