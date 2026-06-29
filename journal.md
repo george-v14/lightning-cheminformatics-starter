@@ -31,6 +31,128 @@ This journal will record my observations and learnings during this build.
 
 Execute the original Practical Cheminformatics notebook without modification.
 
+## Milestone 2 – Baseline Notebook Reproduction
+
+**Objective:** Execute the original *Building a Machine Learning Model with BindingDB* notebook from Practical Cheminformatics inside Lightning AI Studio without modifying the scientific workflow.
+
+### Outcome
+
+Successfully executed the notebook end-to-end within a Lightning AI Python Studio environment.
+
+The notebook successfully:
+
+* Loaded the required Python libraries
+* Queried the sample BindingDB DuckDB database
+* Retrieved PXR assay data
+* Cleaned and transformed EC50 values
+* Generated molecular descriptors with RDKit
+* Trained a LightGBM regression model
+* Evaluated model performance
+* Produced activity predictions and visualizations
+
+### Environment Setup
+
+Instead of relying on the Google Colab installation cell, project dependencies were managed through a `requirements.txt` file and installed using:
+
+```bash
+pip install -r requirements.txt
+```
+
+This establishes a reproducible project environment independent of Google Colab.
+
+### Compatibility Issues Encountered
+
+#### Missing project dependencies
+
+The notebook assumes several scientific Python packages are already installed in the execution environment.
+
+Resolution:
+
+* Created a project-level `requirements.txt`
+* Installed all dependencies using pip
+
+#### Missing helper module
+
+The notebook dynamically downloads `download_pdb_ids.py` when executed in Google Colab.
+
+Because Lightning AI skips the Colab-specific installation block, this helper module had to be downloaded manually into the notebook directory.
+
+Observation:
+
+Research notebooks often depend on helper scripts that are fetched dynamically. These should eventually become part of the application's source code rather than being downloaded during execution.
+
+#### Pandas missing value compatibility
+
+One notebook cell assumed missing values would be represented as `None`:
+
+```python
+if r is None:
+```
+
+Within the Lightning AI environment, missing values were represented as `NaN`, resulting in:
+
+```
+AttributeError: 'float' object has no attribute 'split'
+```
+
+Resolution:
+
+Replaced the `None` check with:
+
+```python
+pd.isna(r)
+```
+
+This correctly handles both `None` and `NaN` values.
+
+### Key Takeaways
+
+Successfully reproducing a notebook involves much more than executing cells. The process surfaced several categories of reproducibility challenges common in scientific machine learning workflows:
+
+* Environment configuration
+* Dependency management
+* External helper scripts
+* Data compatibility across library versions
+
+These issues are typically minor individually, but collectively represent the work required to transform a research notebook into a reproducible software project.
+
+### Next Milestone
+
+Refactor the notebook into reusable Python modules while preserving the scientific workflow. The notebook will remain the reference implementation, while reusable functionality will be migrated into the `src/` package to support a configurable Streamlit application.
+
+### Lightning AI Port Viewer
+
+Unlike local development, applications running inside Lightning AI Python Studio are not automatically accessible through `localhost`.
+
+Web applications must be exposed through the Lightning AI **Port Viewer** by forwarding the appropriate application port (e.g., Streamlit on port 8501).
+
+This allows the application to be securely accessed through a Lightning-generated URL without exposing the underlying virtual machine.
+
+## Milestone 3 – Initial Streamlit Application
+
+Successfully converted the BindingDB PXR notebook workflow into a first Streamlit application running inside Lightning AI Studio.
+
+The app supports:
+- Viewing cleaned BindingDB PXR data
+- Training a LightGBM QSAR model
+- Saving the trained model artifact
+- Predicting pEC50 from user-entered SMILES
+- Rendering the input molecule
+
+Key Lightning AI lesson: Streamlit apps running in Python Studio must be exposed through the Port Viewer on port 8501.
+
+### Removed notebook-specific dependency
+
+The original notebook imports `mols2grid` for interactive molecule visualization inside Jupyter.
+
+The Streamlit application replaces this functionality with native Streamlit components (`st.dataframe`) and RDKit molecule rendering, so `mols2grid` is no longer required.
+
+Observation:
+
+Research notebooks frequently include visualization libraries that are tightly coupled to the notebook environment. When converting notebooks into applications, these dependencies can often be removed in favor of the application's native UI framework.
+
+
+
 ## Common Git Workflow Commands
 ## Git Lessons from Lightning AI Studio Setup
 
