@@ -299,3 +299,11 @@ Step 2 - Bring your data
 Step 3 - Install packages
 Step 4 - Add studio plugins
 
+## Research Notebooks
+Research notebooks often depend on small helper scripts that are downloaded dynamically. For a production application, these helper utilities should become part of the project's source code rather than being fetched at runtime.
+
+### Pandas missing values issue
+
+The original notebook checked for missing PDB IDs using `r is None`, but in the Lightning AI environment the missing values appeared as `NaN`, which is represented as a float. This caused an `AttributeError` when the notebook tried to call `.split()` on a float.
+
+Fix: use `pd.isna(r)` to detect both `None` and `NaN`.
