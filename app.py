@@ -211,6 +211,48 @@ with tab_data:
     st.subheader("pEC50 Distribution")
     st.bar_chart(clean_df["pEC50"].value_counts(bins=20).sort_index())
 
+    st.subheader("Compounds with PDB Structure Annotations")
+
+    pdb_df = clean_df.dropna(subset=["PDB ID(s) for Ligand-Target Complex"])[
+        [
+            "Ligand SMILES",
+            "Article DOI",
+            "PDB ID(s) for Ligand-Target Complex",
+            "pEC50",
+        ]
+    ].drop_duplicates()
+
+    if pdb_df.empty:
+        st.info("No compounds with PDB structure annotations found.")
+    else:
+        st.write(f"{len(pdb_df)} records with PDB structure annotations")
+
+        max_compounds = st.slider(
+            "Number of structure-linked compounds to display",
+            min_value=3,
+            max_value=min(30, len(pdb_df)),
+            value=min(12, len(pdb_df)),
+            step=3,
+        )
+
+        for _, row in pdb_df.head(max_compounds).iterrows():
+            col_img, col_info = st.columns([1, 3])
+
+            with col_img:
+                mol = Chem.MolFromSmiles(row["Ligand SMILES"])
+                if mol is not None:
+                    st.image(
+                        Draw.MolToImage(mol, size=(300, 220)),
+                        caption="Ligand structure",
+                    )
+                else:
+                    st.warning("Could not render molecule.")
+
+            with col_info:
+                st.markdown(f"**PDB IDs:** `{row['PDB ID(s) for Ligand-Target Complex']}`")
+                st.markdown(f"**Article DOI:** {row['Article DOI']}")
+                st.markdown(f"**pEC50:** {row['pEC50']:.2f}")
+                st.code(row["Ligand SMILES"])
 
 with tab_train:
     st.header("Train LightGBM QSAR Model")
